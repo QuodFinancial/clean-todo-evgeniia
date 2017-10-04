@@ -1,0 +1,24 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Clean TODO list
+  </h1>
+
+  <md-list>
+    <md-list-item *ngFor="let todo of todos">
+      <button md-button (click)="delete(todo)">X</button>
+      <md-checkbox [(ngModel)]="todo.done" (click)="toggle(todo, $event)" class="todo-checkbox"></md-checkbox>
+      <div>
+        {{ todo.task }}
+      </div>
+    </md-list-item>
+  </md-list>
+
+  <form (submit)="addTodo(newTask)">
+    <md-input-container>
+      <input mdInput name="newTask" [(ngModel)]="newTask" placeholder="New task" type="text">
+    </md-input-container>
+
+    <button md-raised-button type="submit">New</button>
+  </form>
+</div>

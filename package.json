@@ -1,0 +1,28 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd lib && npm test",
+    "init": "npm run init:core && npm run init:lib && npm run init:app",
+    "init:core": "cd core && npm i",
+    "init:lib": "cd lib && npm i",
+    "init:app": "cd app && npm i",
+    "build": "npm run build:core && npm run build:lib && npm run build:app",
+    "build:core": "cd core && npm run build",
+    "build:lib": "cd lib && npm run build",
+    "build:app": "cd app && npm run build",
+    "start": "npm run build:core && npm run build:lib && cd app && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuodFinancial/clean-architecture.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuodFinancial/clean-architecture/issues"
+  },
+  "homepage": "https://github.com/QuodFinancial/clean-architecture#readme"
+}

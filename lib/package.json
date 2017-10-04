@@ -1,0 +1,29 @@
+{
+  "name": "lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "pretest": "npm run build",
+    "test": "mocha ./build/**/*.spec.js",
+    "prebuild": "rimraf ./build/",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/chai-spies": "0.0.0",
+    "@types/mocha": "^2.2.43",
+    "chai": "^4.1.2",
+    "chai-spies": "^0.7.1",
+    "mocha": "^3.5.3",
+    "rimraf": "^2.6.2",
+    "typescript": "~2.3.3"
+  },
+  "dependencies": {
+    "core": "file:../core"
+  }
+}
