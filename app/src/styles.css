@@ -1,2 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.container {
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.mat-h2 {
+    margin-top: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.radio-button {
+    margin: 5px;
+}
+
+.selected-value {
+    margin: 15px 0;
+}
+
+.tab-group {
+    border: 1px solid #e8e8e8;
+}
+
+.tab-content {
+    padding: 16px;
+}
+
+.mat-horizontal-stepper-header {
+    cursor: pointer;
+}
+
+.example-tooltip-host {
+    display: inline-block;
+}

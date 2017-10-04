@@ -1,24 +1,188 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Clean TODO list
-  </h1>
+<div class="container">
 
-  <md-list>
-    <md-list-item *ngFor="let todo of todos">
-      <button md-button (click)="delete(todo)">X</button>
-      <md-checkbox [(ngModel)]="todo.done" (click)="toggle(todo, $event)" class="todo-checkbox"></md-checkbox>
-      <div>
-        {{ todo.task }}
+    <h1 class="mat-display-1 text-center">
+      Clean TODO list
+    </h1>
+
+    <form (submit)="addTodo(newTask)" class="text-center">
+      <md-input-container>
+        <input mdInput name="newTask" [(ngModel)]="newTask" placeholder="New task" type="text">
+      </md-input-container>
+      <div class="example-tooltip-host" mdTooltip="Tooltip!" [mdTooltipPosition]="position">
+        <button md-raised-button type="submit">New</button>
       </div>
-    </md-list-item>
-  </md-list>
 
-  <form (submit)="addTodo(newTask)">
-    <md-input-container>
-      <input mdInput name="newTask" [(ngModel)]="newTask" placeholder="New task" type="text">
-    </md-input-container>
+    </form>
 
-    <button md-raised-button type="submit">New</button>
-  </form>
+    <md-list>
+      <md-list-item *ngFor="let todo of todos">
+        <button md-button (click)="delete(todo)">X</button>
+        <md-checkbox [(ngModel)]="todo.done" (click)="toggle(todo, $event)" class="todo-checkbox"></md-checkbox>
+        <div>
+          {{ todo.task }}
+        </div>
+      </md-list-item>
+    </md-list>
+
+
+  <h2 class="mat-h2">Autocomplete, slide toggle</h2>
+  <md-form-field class="example-full-width">
+    <input mdInput placeholder="State" aria-label="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+    <md-autocomplete #auto="mdAutocomplete">
+      <md-option *ngFor="let state of filteredStates | async" [value]="state.name">
+        <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+        <span>{{ state.name }}</span> |
+        <small>Population: {{state.population}}</small>
+      </md-option>
+    </md-autocomplete>
+  </md-form-field>
+
+  <br />
+
+  <md-slide-toggle
+          [checked]="stateCtrl.disabled"
+          (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
+    Disable Input?
+  </md-slide-toggle>
+
+  <h2 class="mat-h2">Datepicker</h2>
+
+  <md-form-field>
+    <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+
+  <h2 class="mat-h2">Radio button</h2>
+
+  <div class="selected-value">Your answer is: {{yourAnswer}}</div>
+
+  <md-radio-group class="radio-group" [(ngModel)]="yourAnswer">
+    <md-radio-button class="radio-button" *ngFor="let answer of answers" [value]="answer">
+      {{answer}}
+    </md-radio-button>
+  </md-radio-group>
+
+  <h2 class="mat-h2">Slider</h2>
+
+  <md-slider></md-slider>
+
+  <h2 class="mat-h2">Stepper</h2>
+
+  <md-horizontal-stepper [linear]="isLinear">
+    <md-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template mdStepLabel>Fill out your name</ng-template>
+        <md-form-field>
+          <input mdInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </md-form-field>
+        <div>
+          <button md-button mdStepperNext>Next</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template mdStepLabel>Fill out your address</ng-template>
+        <md-form-field>
+          <input mdInput placeholder="Address" formControlName="secondCtrl" required>
+        </md-form-field>
+        <div>
+          <button md-button mdStepperPrevious>Back</button>
+          <button md-button mdStepperNext>Next</button>
+        </div>
+      </form>
+    </md-step>
+    <md-step>
+      <ng-template mdStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button md-button mdStepperPrevious>Back</button>
+      </div>
+    </md-step>
+  </md-horizontal-stepper>
+
+  <h2 class="mat-h2">Tabs</h2>
+
+  <md-tab-group class="tab-group">
+    <md-tab label="Tab 1">
+      <div class="tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>
+    </md-tab>
+    <md-tab label="Tab 2">
+      <ng-template md-tab-label>
+        ⭐
+      </ng-template>
+      <div class="tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>
+    </md-tab>
+    <md-tab label="Tab 3" disabled>
+      No content
+    </md-tab>
+    <md-tab label="Tab 4">
+      <div class="tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+        <br />
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+        Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+        In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+        feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+        orci enim rutrum enim, vel tempor sapien arcu a tellus.
+      </div>
+    </md-tab>
+    <md-tab label="Tab 5">
+      No content
+    </md-tab>
+    <md-tab label="Tab 6">
+      No content
+    </md-tab>
+  </md-tab-group>
+
+  <h2 class="mat-h2">Expansion panel</h2>
+
+  <md-expansion-panel>
+    <md-expansion-panel-header>
+      <md-panel-title>
+        Personal data
+      </md-panel-title>
+      <md-panel-description>
+        Type your name and age
+      </md-panel-description>
+    </md-expansion-panel-header>
+
+    <md-form-field>
+      <input mdInput placeholder="First name">
+    </md-form-field>
+
+    <md-form-field>
+      <input mdInput placeholder="Age">
+    </md-form-field>
+  </md-expansion-panel>
+
+  <h2 class="mat-h2">Chips</h2>
+
+  <md-chip-list class="mat-chip-list-stacked">
+    <md-chip *ngFor="let chipColor of availableColors"
+             selected="true"
+             color="{{chipColor.color}}">
+      {{chipColor.name}}
+    </md-chip>
+  </md-chip-list>
+
 </div>

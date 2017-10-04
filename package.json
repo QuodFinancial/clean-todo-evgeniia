@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/QuodFinancial/clean-architecture/issues"
   },
-  "homepage": "https://github.com/QuodFinancial/clean-architecture#readme"
+  "homepage": "https://github.com/QuodFinancial/clean-architecture#readme",
+  "dependencies": {
+    "hammerjs": "^2.0.8"
+  }
 }
