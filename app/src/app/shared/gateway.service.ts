@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Todo } from 'core'
+import { Todo } from '../../../../core'
 
 @Injectable()
 export class GatewayService {

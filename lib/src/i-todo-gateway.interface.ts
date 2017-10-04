@@ -1,4 +1,4 @@
-import { Todo } from 'core'
+import { Todo } from '../../core'
 
 export interface ITodoGateway {
   getTodos(): Promise<Todo[]>

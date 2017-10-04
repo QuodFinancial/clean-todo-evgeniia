@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Todo } from 'core'
+import { Todo } from '../../../core'
 
 import { GatewayService } from './shared/gateway.service'
-import { TodoInteractor } from 'lib'
+import { TodoInteractor } from '../../../lib'
 
 @Component({
   selector: 'app-root',

@@ -2,7 +2,7 @@ import 'mocha'
 import * as chai from 'chai'
 import * as spies from 'chai-spies'
 
-import { Todo } from 'core'
+import { Todo } from '../../core'
 
 import { TodoInteractor, ITodoController, ITodoGateway } from '.'
 
